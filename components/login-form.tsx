@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { signIn } from '@/lib/auth';
 
 export function LoginForm() {
   return (
@@ -43,10 +44,20 @@ export function LoginForm() {
           <Button type="submit" className="w-full">
             Login
           </Button>
-          <Button variant="outline" className="w-full">
+        </div>
+
+        <form
+          action={async () => {
+            'use server';
+            await signIn('google');
+          }}
+          className="pt-4"
+        >
+          <Button type="submit" className="w-full" variant="outline">
             Login with Google
           </Button>
-        </div>
+        </form>
+
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?{' '}
           <Link href="/register" className="underline">
