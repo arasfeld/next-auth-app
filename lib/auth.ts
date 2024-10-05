@@ -29,6 +29,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return token;
     },
+    async session({ session }) {
+      // don't include passwordHash in the session
+      delete session?.user?.passwordHash;
+      return session;
+    },
     async signIn({ account, user }) {
       if (account?.provider !== 'credentials') return true;
 
