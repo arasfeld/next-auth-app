@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -35,8 +34,6 @@ export function RegisterForm() {
           password: rawFormData.password,
         }),
       });
-
-      redirect('/');
     } catch (e) {
       console.error(e);
     }

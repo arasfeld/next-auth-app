@@ -1,6 +1,7 @@
+import { PersonIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { auth } from '@/lib/auth';
 import {
@@ -8,6 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { signOut } from '@/lib/auth';
@@ -29,12 +31,12 @@ export async function UserButton() {
           <Button variant="ghost" className="relative h-8 w-8 rounded-full">
             <Avatar className="h-8 w-8">
               <AvatarImage
-                src={
-                  session.user.image ??
-                  `https://api.dicebear.com/9.x/thumbs/svg?seed=${Math.floor(Math.random() * 100000) + 1}&randomizeIds=true`
-                }
+                src={session.user.image ?? ''}
                 alt={session.user.name ?? ''}
               />
+              <AvatarFallback>
+                <PersonIcon />
+              </AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
@@ -50,6 +52,12 @@ export async function UserButton() {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuItem>
+            <Link className="w-full" href="/admin">
+              Admin
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
             <form
               action={async () => {
                 'use server';
@@ -57,9 +65,9 @@ export async function UserButton() {
               }}
               className="w-full"
             >
-              <Button variant="ghost" className="w-full p-0">
+              <button className="text-start w-full" type="submit">
                 Sign Out
-              </Button>
+              </button>
             </form>
           </DropdownMenuItem>
         </DropdownMenuContent>

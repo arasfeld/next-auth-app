@@ -44,9 +44,9 @@ export default function RootLayout({
           disableTransitionOnChange
           enableSystem
         >
-          <div className="flex flex-col h-full w-full min-h-screen">
+          <div className="flex flex-col h-screen w-full">
             <Header />
-            <main className="mx-auto w-full max-w-3xl flex-auto px-4 py-4 sm:px-6 md:py-6">
+            <main className="flex flex-1 mx-auto overflow-hidden w-full">
               {children}
             </main>
           </div>

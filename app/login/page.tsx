@@ -10,5 +10,9 @@ export default async function Login() {
     redirect('/');
   }
 
-  return <LoginForm />;
+  return (
+    <div className="flex items-center justify-center w-full">
+      <LoginForm />
+    </div>
+  );
 }

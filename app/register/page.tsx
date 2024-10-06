@@ -10,5 +10,9 @@ export default async function Register() {
     redirect('/');
   }
 
-  return <RegisterForm />;
+  return (
+    <div className="flex items-center justify-center w-full">
+      <RegisterForm />
+    </div>
+  );
 }
